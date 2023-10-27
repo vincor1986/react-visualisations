@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import ToggleButton from "../ui/ToggleButton";
 
@@ -7,11 +7,11 @@ import moonIcon from "../../img/icons/moon.svg";
 import sunIcon from "../../img/icons/sun.svg";
 
 const Navbar = () => {
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
 
   return (
-    <div className="flex items-center justify-between bg-gradient-to-r from-lgStart to-lgEnd h-12 w-100% px-60 py-4">
-      <h1 className="text-white text-xl">
+    <div className="flex items-center justify-between bg-gradient-to-r from-lgStart to-lgEnd h-12 w-100% px-4 md:px-24 lg:px-34 py-4">
+      <h1 className="text-white text-sm md:text-lg">
         React Visualisation Examples with Chart.js
         <img
           src={chartjsImg}

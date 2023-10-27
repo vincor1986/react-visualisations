@@ -1,5 +1,3 @@
-import { useState, useEffect } from "react";
-
 const ToggleButton = ({
   title1,
   title2,

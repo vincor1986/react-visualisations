@@ -8,3 +8,7 @@
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
 }
+
+html {
+  @apply bg-slate-100;
+}
