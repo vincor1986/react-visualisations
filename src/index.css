@@ -10,5 +10,13 @@
 }
 
 html {
-  @apply bg-slate-100;
+  @apply bg-sky-700;
+}
+
+.col-span-2 {
+  grid-column: span 2 / span 2;
+}
+
+.col-span-1 {
+  grid-column: span 1 / span 1;
 }

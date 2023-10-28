@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Doughnut } from "react-chartjs-2";
 import {
@@ -9,6 +9,9 @@ import {
   PointElement,
   Tooltip,
 } from "chart.js";
+
+import useScreenWidth from "../../hooks/useScreenWidth";
+import RandomBtn from "../ui/RandomBtn";
 
 const CHART_DATA_ORIGIN = [
   { product: "Laptop/Computer", value: 16 },
@@ -42,10 +45,26 @@ const CHART_OPTIONS = {
       borderWidth: 5,
     },
   },
+  plugins: {
+    legend: {
+      position: "top",
+    },
+  },
 };
 
 const DoughnutChart = () => {
   const [chartData, setChartData] = useState(CHART_DATA);
+  const [chartOptions, setChartOptions] = useState(CHART_OPTIONS);
+  const screenSize = useScreenWidth();
+
+  useEffect(() => {
+    const legendPos = screenSize <= 767 ? "top" : "bottom";
+    setChartOptions((prev) => {
+      let newOptions = JSON.parse(JSON.stringify(prev));
+      newOptions.plugins.legend.position = legendPos;
+      return newOptions;
+    });
+  }, [screenSize]);
 
   const updateChart = () => {
     let randomNumbers = [],
@@ -54,7 +73,7 @@ const DoughnutChart = () => {
       randomNumbers.push(Math.round(Math.random() * 50));
     }
     randomNumbers.push(remaining - randomNumbers.reduce((a, b) => a + b));
-    console.log(randomNumbers);
+
     setChartData((prev) => {
       let newData = JSON.parse(JSON.stringify(prev));
       newData.datasets[0].data = [...randomNumbers];
@@ -69,15 +88,10 @@ const DoughnutChart = () => {
       <Doughnut
         datasetKeyId="products"
         data={chartData}
-        options={CHART_OPTIONS}
+        options={chartOptions}
         className="m-auto"
       />
-      <button
-        className="absolute -bottom-12 right-1 px-4 py-2 bg-purple-900 text-white rounded-md cursor-pointer hover:bg-purple-800 z-10 transition-all active:translate-y-1 duration-250"
-        onClick={updateChart}
-      >
-        Randomize
-      </button>
+      <RandomBtn updateFunction={updateChart} />
     </div>
   );
 };

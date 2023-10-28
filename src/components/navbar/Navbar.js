@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import ToggleButton from "../ui/ToggleButton";
 
@@ -7,7 +7,22 @@ import moonIcon from "../../img/icons/moon.svg";
 import sunIcon from "../../img/icons/sun.svg";
 
 const Navbar = () => {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(
+    localStorage.getItem("darkMode") == "false" ? false : true
+  );
+
+  useEffect(() => {
+    const root = window.document.documentElement;
+    if (darkMode) {
+      root.classList.add("dark");
+      root.classList.add("bg-slate-900");
+      localStorage.setItem("darkMode", "true");
+    } else {
+      root.classList.remove("dark");
+      root.classList.remove("bg-slate-900");
+      localStorage.setItem("darkMode", "false");
+    }
+  }, [darkMode]);
 
   return (
     <div className="flex items-center justify-between bg-gradient-to-r from-lgStart to-lgEnd h-12 w-100% px-4 md:px-24 lg:px-34 py-4">

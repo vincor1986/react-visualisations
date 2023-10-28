@@ -8,8 +8,8 @@ import {
   PointElement,
   CategoryScale,
   LinearScale,
-  Legend,
 } from "chart.js";
+import RandomBtn from "../ui/RandomBtn";
 
 const CHART_DATA_ORIGIN = [
   { year: 2010, count: 10 },
@@ -43,13 +43,34 @@ const CHART_DATA_ORIGIN_2 = [
   { year: 2022, count: 28 },
 ];
 
-const CHART_OPTIONS = {};
-CHART_OPTIONS.scales = {
-  x: { grid: { display: false }, border: { display: false } },
-  y: { border: { display: false } },
+const CHART_OPTIONS = {
+  scales: {
+    x: {
+      grid: {
+        display: false,
+      },
+      border: {
+        display: false,
+      },
+    },
+    y: {
+      border: {
+        display: false,
+      },
+    },
+  },
+  elements: {
+    line: {
+      borderWidth: 2,
+    },
+  },
+  maintainAspectRatio: false,
+  plugins: {
+    legend: {
+      display: false,
+    },
+  },
 };
-CHART_OPTIONS.elements = { line: { borderWidth: 2 } };
-CHART_OPTIONS.maintainAspectRatio = false;
 
 const LineChart = () => {
   const [chartData, setChartData] = useState({
@@ -57,7 +78,7 @@ const LineChart = () => {
     datasets: [
       {
         id: 0,
-        label: "Acquisitions by year",
+        label: "Smartphone sales",
         data: CHART_DATA_ORIGIN.map((row) => row.count * 1000),
         borderColor: "darkblue",
         tension: 0.35,
@@ -65,7 +86,7 @@ const LineChart = () => {
       },
       {
         id: 1,
-        label: "Acquisitions by year",
+        label: "Tablet sales",
         data: CHART_DATA_ORIGIN_2.map((row) => row.count * 1000),
         borderColor: "darkblue",
         borderDash: [3, 3],
@@ -109,12 +130,7 @@ const LineChart = () => {
         options={CHART_OPTIONS}
         className="w-100% h-100% min-w-max min-h-max"
       />
-      <button
-        className="absolute -bottom-12 right-1 px-4 py-2 bg-purple-900 text-white rounded-md cursor-pointer hover:bg-purple-800 z-10 transition-all active:translate-y-1 duration-250"
-        onClick={updateChart}
-      >
-        Randomize
-      </button>
+      <RandomBtn updateFunction={updateChart} />
     </div>
   );
 };
