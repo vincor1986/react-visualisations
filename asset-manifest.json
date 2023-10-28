@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/react-visualisations/static/css/main.c585c075.css",
+    "main.js": "/react-visualisations/static/js/main.9f38f591.js",
+    "static/media/chartjs.png": "/react-visualisations/static/media/chartjs.8c9ceed2907857ed8719.png",
+    "index.html": "/react-visualisations/index.html",
+    "static/media/sun.svg": "/react-visualisations/static/media/sun.a59f0405b34e25bfdd3c949e5f6c6d11.svg",
+    "static/media/moon.svg": "/react-visualisations/static/media/moon.7f5f0c5ef6032b61d24c913493cba07f.svg",
+    "main.c585c075.css.map": "/react-visualisations/static/css/main.c585c075.css.map",
+    "main.9f38f591.js.map": "/react-visualisations/static/js/main.9f38f591.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c585c075.css",
+    "static/js/main.9f38f591.js"
+  ]
+}
